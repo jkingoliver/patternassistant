@@ -42,6 +42,6 @@ spec:
           - name: service_watson_conversation
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.secretKeyRefs.alertNotification }}
+                name: {{ .Values.secretKeyRefs.conversation }}
                 key: binding
                 optional: true
