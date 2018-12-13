@@ -37,3 +37,5 @@ istio:
   weight: 100
 generatedBindings:
   enabled: true
+secretKeyRefs:
+  conversation: conversation

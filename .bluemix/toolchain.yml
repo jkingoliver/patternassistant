@@ -38,6 +38,7 @@ services:
           CF_SPACE: "{{form.pipeline.parameters.dev-space}}"
           CF_ORGANIZATION: "{{form.pipeline.parameters.dev-organization}}"
           REGION_ID: "{{form.pipeline.parameters.dev-region}}"
+          CONVERSATION: "{{form.pipeline.parameters.conversation}}"
         execute: true
 
   #Web IDE
@@ -55,3 +56,4 @@ form:
       api-key: "{{api-key}}"
       dev-space: "{{space}}"
       dev-organization: "{{organization}}"
+      conversation: "{{conversation}}"
