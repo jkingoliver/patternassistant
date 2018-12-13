@@ -7,7 +7,7 @@ template:
     - build
 
 toolchain:
-  name: WatsonAssistantBasicNRFTA
+  name: "{{form.pipeline.parameters.app-name}}"
 
 services:
   # Github repos
@@ -41,6 +41,7 @@ services:
           IMAGE_REGISTRY_TOKEN: "{{form.pipeline.parameters.image-registry-token}}"
           REGISTRY_NAMESPACE: "{{form.pipeline.parameters.registry-namespace}}"
           REGION_ID: "{{form.pipeline.parameters.dev-region}}"
+          CONVERSATION: "{{form.pipeline.parameters.conversation}}"
         execute: true
 
   #Web IDE
@@ -53,12 +54,13 @@ form:
     schema:
       $ref: deploy.json
     parameters:
-      app-name: WatsonAssistantBasicNRFTA
+      app-name: "{{app-name}}"
       dev-region: "{{deploymentRegion}}"
       api-key: "{{api-key}}"
       chart-name: watsonassistantbasicnrfta
-      kube-cluster-name: mycluster
-      cluster-namespace: default
+      kube-cluster-name: "{{kube-cluster-name}}"
+      cluster-namespace: "{{kube-cluster-namespace}}"
       image-pull-secret-name: "{{image-pull-secret-name}}"
       image-registry-token: "{{image-registry-token}}"
-      registry-namespace: id120000214c491a1e73436dacb2e2
+      registry-namespace: "{{image-registry-namespace}}"
+      conversation: "{{conversation}}"
