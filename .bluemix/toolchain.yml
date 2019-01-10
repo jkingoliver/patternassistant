@@ -35,11 +35,17 @@ services:
           REPO: repo
           CF_APP: "{{form.pipeline.parameters.app-name}}"
           API_KEY: "{{form.pipeline.parameters.api-key}}"
+          {{#isKube}}
           CHART_NAME: "{{form.pipeline.parameters.chart-name}}"
           KUBE_CLUSTER_NAME: "{{form.pipeline.parameters.kube-cluster-name}}"
           CLUSTER_NAMESPACE: "{{form.pipeline.parameters.cluster-namespace}}"
           IMAGE_REGISTRY_TOKEN: "{{form.pipeline.parameters.image-registry-token}}"
           REGISTRY_NAMESPACE: "{{form.pipeline.parameters.registry-namespace}}"
+          {{/isKube}}
+          {{#isCF}}
+          CF_SPACE: "{{tag 'form.pipeline.parameters.dev-space'}}"
+          CF_ORGANIZATION: "{{tag 'form.pipeline.parameters.dev-organization'}}"
+          {{/isCF}}
           REGION_ID: "{{form.pipeline.parameters.dev-region}}"
           CONVERSATION: "{{form.pipeline.parameters.conversation}}"
         execute: true
@@ -57,10 +63,16 @@ form:
       app-name: "{{app-name}}"
       dev-region: "{{deploymentRegion}}"
       api-key: "{{api-key}}"
+      {{#isKube}}
       chart-name: watsonassistantbasicnrfta
       kube-cluster-name: "{{kube-cluster-name}}"
       cluster-namespace: "{{kube-cluster-namespace}}"
       image-pull-secret-name: "{{image-pull-secret-name}}"
       image-registry-token: "{{image-registry-token}}"
       registry-namespace: "{{image-registry-namespace}}"
+      {{/isKube}}
+      {{#isCF}}
+      dev-space: "{{space}}"
+      dev-organization: "{{org}}"
+      {{/isCF}}
       conversation: "{{conversation}}"
